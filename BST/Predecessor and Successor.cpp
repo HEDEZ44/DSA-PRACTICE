@@ -1,9 +1,9 @@
-// { Driver Code Starts
-// C++ program to find predecessor and successor in a BST
+
+
 #include <iostream>
 using namespace std;
 
-// BST Node
+
 struct Node
 {
 	int key;
@@ -18,8 +18,8 @@ struct Node
 };
 
 int key=0;
-// This function finds predecessor and successor of key in BST.
-// It sets pre and suc as predecessor and successor respectively
+
+
 void findPreSuc(Node* root, Node*& pre, Node*& suc, int key);
 
  void insert(struct Node *root,int n1,int n2,char lr)
@@ -42,10 +42,10 @@ void findPreSuc(Node* root, Node*& pre, Node*& suc, int key);
          insert(root->right,n1,n2,lr);
      }
  }
-// Driver program to test above functions
+
 int main()
 {
-    /* Let us construct the tree shown in above diagram */
+   
     int t,k;
     cin>>t;
     while(t--)
@@ -76,10 +76,10 @@ int main()
             insert(root,n1,n2,lr);
         }
     }
-   // Inorder(root);
-    //Node * target =ptr;
-    //printkdistanceNode(root, target, k);
-    //cout<<endl;
+   
+    
+    
+    
     cin>>key;
     findPreSuc(root, pre, suc, key);
 	if (pre != NULL)
@@ -93,23 +93,17 @@ int main()
 	cout << " "<<"-1"<<endl;
     }
 	return 0;
-}// } Driver Code Ends
+}
 
 
-/* BST Node
-struct Node
-{
-	int key;
-	struct Node *left, *right;
-};
-*/
 
-// This function finds predecessor and successor of key in BST.
-// It sets pre and suc as predecessor and successor respectively
+
+
+
 void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
 {
 
-// Your code goes here
+
 if(root==NULL) return;
 if(root->key==key){
     if(root->left!=NULL){

@@ -1,4 +1,4 @@
-// { Driver Code Starts
+
 #include <bits/stdc++.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,18 +46,11 @@ int main()
     }
 	return 0;
 }
-// } Driver Code Ends
 
 
-/*Structure of the Node of the binary tree is as
-struct Node
-{
-	int data;
-	struct Node *left;
-	struct Node *right;
-};
-*/
-// function should return the root of the new binary tree formed
+
+
+
 Node* construct(int n, int pre[], char preLN[], int &i){
     if(i>=n) return NULL;
     
