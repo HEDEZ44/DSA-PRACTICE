@@ -21,3 +21,24 @@ public:
         return res[row][glass];
     }
 };
+
+// space optimization
+
+class Solution
+{
+public:
+    double champagneTower(int poured, int row, int glass)
+    {
+        vector<double> res(101);
+        res[0] = poured;
+        for (int i = 1; i <= row; i++)
+        {
+            for (int j = i; j >= 0; j--)
+            {
+                res[j] = max(0.0, (res[j] - 1) / 2.0);
+                res[j + 1] += res[j];
+            }
+        }
+        return min(1.0, res[glass]);
+    }
+};
