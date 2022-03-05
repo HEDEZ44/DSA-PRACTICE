@@ -1,18 +1,37 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int main(){
-    int a,b,c;
-    int n;
-    cin>>n;
-    int sum=0;
-    for(int i=0;i<n;i++){
-        cin>>a>>b>>c;
-        if(a&&b || b&&c || c&&a)
-          sum++;
-
-
+int main()
+{
+    int k;
+    cin >> k;
+    while (k--)
+    {
+        int n, s;
+        cin >> n >> s;
+        if (n > s)
+        {
+            cout << 0 << endl;
+            continue;
+        }
+        int sum = s;
+        int i = 1;
+        vector<int> ans;
+        while (sum > i * i)
+        {
+            ans.push_back(i * i);
+            i++;
+        }
+        i--;
+        int count = 0;
+        while (sum - ans[i] >= 0 && i >= 0)
+        {
+            sum -= ans[i];
+            count++;
+            if (sum - ans[i] < 0)
+                i--;
+        }
+        cout << count << endl;
     }
-    cout<<sum<<endl;
     return 0;
 }
