@@ -5,20 +5,23 @@ int main()
 {
     string str;
     cin >> str;
-    int n = str.length();
+    str.insert(0, "0");
     int m;
     cin >> m;
-    vector<int> nums(m);
-    for (int i = 0; i < m; i++)
-    {
-        cin >> nums[i];
-        }
+    int n = str.length();
 
-    for (auto it : nums)
+    for (int it = 0; it < m; it++)
     {
-        int idx = n - it;
-        reverse(str.begin() + it, str.begin() + idx);
+        int a;
+        cin >> a;
+        int i = a;
+        int j = n - i;
+        while (i < j)
+        {
+            swap(str[i], str[j]);
+        }
     }
-    cout << str;
+    cout << str.substr(1);
+
     return 0;
 }
