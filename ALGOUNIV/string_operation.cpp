@@ -5,23 +5,26 @@ int main()
 {
     string str;
     cin >> str;
-    str.insert(0, "0");
     int m;
     cin >> m;
     int n = str.length();
-
-    for (int it = 0; it < m; it++)
+    vector<int> nums(n / 2);
+    for (int i = 0; i < m; i++)
     {
         int a;
         cin >> a;
-        int i = a;
-        int j = n - i;
-        while (i < j)
+        nums[a - 1]++;
+    }
+    int car = 0;
+    for (int i = 0; i < n / 2; i++)
+    {
+        car += nums[i];
+        if (car & 1)
         {
-            swap(str[i], str[j]);
+            swap(str[i], str[n - i - 1]);
         }
     }
-    cout << str.substr(1);
+    cout << str;
 
     return 0;
 }
