@@ -1,26 +1,18 @@
 class Solution {
 public:
-    unordered_set<int> S;
-    unordered_map<int, long long> M;
-    
-    long long solve(int node){
-      if(M.count(node)) return M[node];
-      long long cnt=1;
-      for(auto it:S){
-        if(node%it==0 && S.count(node/it)){
-          cnt+=solve(it)*solve(node/it);
-        }
-      }
-      return M[node]=cnt;
-    }
     int numFactoredBinaryTrees(vector<int>& arr) {
-        
-        
-        S.insert(arr.begin(), arr.end());
-        long long ans=0;
-        for(auto it:S){
-          ans+=solve(it);
+        long ans=0, Mod=1e9 + 7;
+        sort(arr.begin(), arr.end());
+        unordered_map<int, long> M;
+        for(int i=0;i<arr.size();i++){
+          M[arr[i]]=1;
+          for(int j=0;j<i;j++){
+            if(arr[i]%arr[j]==0){
+              M[arr[i]]+= (M[arr[j]]*M[arr[i]/arr[j]]);
+            }
+          }
+          ans= (ans + M[arr[i]])%Mod;
         }
-        return int(ans%1000000007);
+       return ans; 
     }
 };
