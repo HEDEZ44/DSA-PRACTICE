@@ -7,11 +7,10 @@ public:
         bool tdiff = true, sdiff;
         while (tdiff)
             for (i = 0, tdiff = false; i < tlen; i++) {
-                for (j = 0, sdiff = false; j < slen; j++){
+                for (j = 0, sdiff = false; j < slen; j++)
                     if (T[i+j] == '*') continue;
                     else if (T[i+j] != S[j]) break;
                     else sdiff = true;
-                }
                 if (j == slen && sdiff) {
                     for (j = i, tdiff = true; j < slen + i; j++)
                         T[j] = '*';
