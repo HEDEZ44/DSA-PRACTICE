@@ -5,8 +5,16 @@ public:
       for(int l=0;l<cols;l++){
         vector<int> nums(rows);
         for(int j=l;j<cols;j++){
-          for(int i=0;i<rows;i++)
+          int kadane=0, max_kadane=INT_MIN;
+          for(int i=0;i<rows;i++){
             nums[i]+=matrix[i][j];
+            kadane=max(kadane+nums[i], nums[i]);
+            max_kadane=max(max_kadane, kadane);
+          }
+          if(max_kadane<=k){
+            res=max(max_kadane, res);
+            continue;
+          }
           set<int> s={0};
           int sum=0;
           for(auto it:nums){
