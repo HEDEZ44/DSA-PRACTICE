@@ -10,22 +10,18 @@
  * };
  */
 class Solution {
-public:
-  void solve(TreeNode* node, int left, int right, int &ans){
-    if(!node) return;
-    if(node->val>=left && node->val>=right){
-      right=node->val;
-      ans++;
+private:
+    int ans=0;
+    void dfs(TreeNode* node,int maxi){
+        if(node->val>=maxi) ans++;
+        maxi=max(maxi,node->val);
+        if(node->left!=NULL) dfs(node->left,maxi);
+        if(node->right!=NULL) dfs(node->right,maxi);
     }
-    solve(node->left, left, right, ans);
-    solve(node->right, left, right, ans);
-  }
+public:
     int goodNodes(TreeNode* root) {
-      int left=root->val;
-      int right=INT_MIN;
-      int ans=1;
-      solve(root->left, left, right, ans);
-      solve(root->right, left, right, ans);
-      return ans;
+        if(root==NULL) return 0;
+        dfs(root,root->val);  
+        return ans;
     }
 };
