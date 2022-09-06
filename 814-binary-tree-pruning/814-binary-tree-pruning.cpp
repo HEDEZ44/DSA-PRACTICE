@@ -11,23 +11,11 @@
  */
 class Solution {
 public:
-  bool solve(TreeNode* root){
-    if(!root) return false;
-    if(!solve(root->right) and !solve(root->left) and root->val==0){
-      root->left=NULL;
-      root->right=NULL;
-      return false;
-    }
-    if(!solve(root->left)){
-      root->left=NULL;
-    }
-    if(!solve(root->right)){
-      root->right=NULL;
-    }
-    return true;
-  }
     TreeNode* pruneTree(TreeNode* root) {
-      solve(root);
+      if(!root) return NULL;
+      
+      root->left=pruneTree(root->left);
+      root->right=pruneTree(root->right);
       if(!root->left && !root->right && root->val==0) return NULL;
       return root;
     }
