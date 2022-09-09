@@ -1,18 +1,15 @@
 class Solution {
 public:
-    static bool comp(vector<int> &a,vector<int> &b){
-        if(a[0]!=b[0])
-            return a[0]>b[0];
-        return a[1]<b[1];
-    }
-    int numberOfWeakCharacters(vector<vector<int>>& prop) {
-        sort(prop.begin(),prop.end(),comp);
-        int maxTillNow = INT_MIN;
-        int ans=0;
-        for(auto p:prop){
-            if(maxTillNow>p[1]) ans++;
-            else maxTillNow=p[1];
-        }
-        return ans;
+    int numberOfWeakCharacters(vector<vector<int>>& properties) {
+        sort(properties.begin(), properties.end(), [](vector<int>& a, vector<int>& b){
+          return a[0]<b[0] || (a[0]==b[0] && a[1]>b[1]);
+        });
+      int n=properties.size()-1;
+      int temp=INT_MIN, cnt=0;
+      for(int i=n;i>=0;i--){
+        if(temp>properties[i][1]) cnt++;
+        temp=max(temp, properties[i][1]);
+      }
+      return cnt;
     }
 };
